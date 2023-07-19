@@ -8,27 +8,29 @@
 pythonstart () {
 
   installedansible="$(ansible --version | head -n 1 | awk '{print $2}')"
-  ansible="2.9.15"
-  pip="20.2.4"
+  ansible="4.10.0"
+  pip="23.2"
 
   apt-get install -y --reinstall \
-      nano \
-      git \
-      build-essential \
-      libssl-dev \
-      libffi-dev \
-      python3-dev \
-      python3-pip \
-      python-dev \
-      python-pip
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall pip==${pip}
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall \
+  nano \
+  git \
+  build-essential \
+  libssl-dev \
+  libffi-dev \
+  python3-dev \
+  python3-testresources \
+  python3-pip \
+  python3-testresources \
+  python-dev \
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
+python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall \
       pyOpenSSL \
       requests \
       netaddr
-  python -m pip install --disable-pip-version-check --upgrade --force-reinstall pip==${pip}
-  python -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
+  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall pip==${pip}
+  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
 
   # Skip Ansible Install if Version Output Matches
   if [[ "$ansible" != "$installedansible" ]]; then

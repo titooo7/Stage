@@ -1,30 +1,22 @@
   apt-get install -y --reinstall \
-      nano \
-      git \
-      build-essential \
-      libssl-dev \
-      libffi-dev \
-      python3-dev \
-      python3-testresources \
-      python3-pip \
-      python3-testresources \
-      python-dev \
-      python-pip
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall pip==19.0.2
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
-  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall \
+  nano \
+  git \
+  build-essential \
+  libssl-dev \
+  libffi-dev \
+  python3-dev \
+  python3-testresources \
+  python3-pip \
+  python3-testresources
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
+python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall \
       pyOpenSSL \
       requests \
       netaddr \
       lxml
-  python -m pip install --disable-pip-version-check --upgrade --force-reinstall pip==19.0.2
-  python -m pip install --disable-pip-version-check --upgrade --force-reinstall setuptools
-    python -m pip install --disable-pip-version-check --upgrade --force-reinstall \
-      pyOpenSSL \
-      requests \
-      netaddr \
-      lxml
-  python -m pip install --disable-pip-version-check --upgrade --force-reinstall ansible==${1-2.7.8}
+  python3 -m pip install --disable-pip-version-check --upgrade --force-reinstall ansible==${1-4.10.0}
 
   ## Copy pip to /usr/bin
   cp /usr/local/bin/pip /usr/bin/pip
